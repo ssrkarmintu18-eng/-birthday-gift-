@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Surprise Boxfor Mintu Sarkar </title>
+    <style>
+        /* মূল ব্যাকগ্রাউন্ড এবং স্টাইল */
+        body {
+            margin: 0;
+            padding: 0;
+            background: radial-gradient(circle, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* গিফট বক্সের মূল কন্টেইনার */
+        .gift-box-container {
+            position: relative;
+            cursor: pointer;
+            perspective: 1000px;
+        }
+
+        /* বক্সের নিচের অংশ */
+        .gift-box {
+            position: relative;
+            width: 200px;
+            height: 150px;
+            background: #ffffff;
+            border: 4px solid #ff4d6d;
+            border-top: none;
+            border-radius: 0 0 10px 10px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+            transition: transform 0.5s;
+        }
+
+        /* বক্সের ফিতা (Ribbon) */
+        .gift-box::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 100%;
+            background: #ff4d6d;
+        }
+
+        /* বক্সের ঢাকনা (Lid) */
+        .box-lid {
+            position: absolute;
+            top: -25px;
+            left: -10px;
+            width: 220px;
+            height: 30px;
+            background: #ffffff;
+            border: 4px solid #ff4d6d;
+            border-radius: 5px;
+            z-index: 2;
+            transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            transform-origin: left;
+        }
+
+        /* ঢাকনার ফিতা */
+        .box-lid::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 30px;
+            height: 100%;
+            background: #ff4d6d;
+        }
+
+        /* বক্সের ভেতর লুকানো মেসেজ */
+        .birthday-message {
+            position: absolute;
+            top: 20px;
+            left: 5%;
+            width: 90%;
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #ff4d6d;
+            opacity: 0;
+            transform: translateY(0) scale(0.5);
+            transition: all 0.8s ease-in-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* --- বক্স ওপেন হওয়ার পর অ্যানিমেশন --- */
+        .gift-box-container.open .box-lid {
+            transform: rotate(-110deg) translateY(-50px);
+            opacity: 0.8;
+        }
+
+        .gift-box-container.open .birthday-message {
+            opacity: 1;
+            transform: translateY(-130px) scale(1.2);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        /* বেলুন অ্যানিমেশন */
+        .balloon {
+            position: absolute;
+            width: 40px;
+            height: 50px;
+            border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+            bottom: 50px;
+            opacity: 0;
+            z-index: 0;
+        }
+
+        .gift-box-container.open .balloon {
+            animation: floatUp 3s forwards ease-in-out;
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(0.5); opacity: 0; }
+            20% { opacity: 1; }
+            100% { transform: translateY(-400px) translateX(var(--x-move)) scale(1.2); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="gift-box-container" id="giftBox" onclick="openBox()">
+        <!-- বক্সের ঢাকনা -->
+        <div class="box-lid"></div>
+        
+        <!-- বার্থডে মেসেজ -->
+        <div class="birthday-message" id="message">
+            💖শুভ জন্মদিন!💖<br>
+            <span style="font-size: 1rem; color: #555;">Mintu Sarkar </span>
+        </div>
+
+        <!-- মূল বক্স -->
+        <div class="gift-box"></div>
+        
+        <!-- বেলুন সমূহ (কোড দিয়ে তৈরি) -->
+        <div class="balloon" style="background: #e5e5e59e; left: 20px; --x-move: -50px; animation-delay: 0.2s;"></div>
+        <div class="balloon" style="background: #141310; left: 70px; --x-move: 20px; animation-delay: 0.5s;"></div>
+        <div class="balloon" style="background: #18ed55; left: 120px; --x-move: -20px; animation-delay: 0.3s;"></div>
+        <div class="balloon" style="background: #edf9fe; left: 150px; --x-move: 60px; animation-delay: 0.7s;"></div>
+        <div class="balloon" style="background: #79cbee; left: 150px; -x-move: 60px; animation-delay: 0.7s;"></div>
+    </div>
+
+    <script>
+        function openBox() {
+            const box = document.getElementById('giftBox');
+            // বক্সে ক্লিক করলে 'open' ক্লাস যোগ হবে এবং অ্যানিমেশন শুরু হবে
+            box.classList.toggle('open');
+        }
+    </script>
+
+</body>
+</html>
